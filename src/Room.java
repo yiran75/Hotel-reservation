@@ -1,24 +1,33 @@
 import java.io.Serializable;
 
-public class Room implements Serializable {
+public class Room implements Serializable
+{
     private static final long serialVersionUID = 1L;
+
+    public enum RoomType
+    {
+        SINGLE, DOUBLE, DELUXE, SUITE
+    }
+
     private String roomId;
     private RoomType type;
-    private BedType bed;
-    private int price;
+    private double pricePerNight;
+    private boolean available;
 
-    public Room(String roomId, RoomType type, BedType bed, int price) {
+    public Room(String roomId, RoomType type, double pricePerNight)
+    {
         this.roomId = roomId;
         this.type = type;
-        this.bed = bed;
-        this.price = price;
+        this.pricePerNight = pricePerNight;
+        this.available = true;
     }
 
     public String getRoomId() { return roomId; }
+    public void setRoomId(String roomId) { this.roomId = roomId; }
     public RoomType getType() { return type; }
-    public BedType getBed() { return bed; }
-    public int getPrice() { return price; }
-
-    @Override
-    public String toString() { return roomId; }
+    public void setType(RoomType type) { this.type = type; }
+    public double getPricePerNight() { return pricePerNight; }
+    public void setPricePerNight(double pricePerNight) { this.pricePerNight = pricePerNight; }
+    public boolean isAvailable() { return available; }
+    public void setAvailable(boolean available) { this.available = available; }
 }
