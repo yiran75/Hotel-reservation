@@ -1,13 +1,3 @@
-interface PricingStrategy {
-    int calculate(int basePrice, long days);
-}
-
-class RegularPricing implements PricingStrategy {
-    public int calculate(int base, long days) {
-        return base * (int) days;
-    }
-}
-
 public class PriceCalculator {
     private PricingStrategy strategy;
 
@@ -15,7 +5,10 @@ public class PriceCalculator {
         this.strategy = strategy;
     }
 
-    public int getTotal(int base, long days) {
+    public int calculateTotal(int base, int days) {
+        if (strategy == null) {
+            strategy = new RegularPricing();
+        }
         return strategy.calculate(base, days);
     }
 }
